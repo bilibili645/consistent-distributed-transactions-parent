@@ -3,7 +3,12 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/consistent-distributed-transactions-api" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/message-service-sub-system" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/message-master-service-sub-system" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/message-master-service-sub-system" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/message-master-service-sub-system/message-service-sub-system-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/message-master-service-sub-system/message-service-sub-system-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/message-master-service-sub-system/message-service-sub-system-rest" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/message-master-service-sub-system/message-service-sub-system-rpc" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/message-service-sub-system-common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/message-service-sub-system-rest" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/message-service-sub-system-rpc" charset="UTF-8" />

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Message-confirmation-sub-system" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/consistent-distributed-transactions-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/message-master-service-sub-system" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/message-master-service-sub-system" charset="UTF-8" />

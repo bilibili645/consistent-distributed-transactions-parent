@@ -9,6 +9,9 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>message-master-service-sub-system</module>
+        <module>Message-confirmation-sub-system</module>
+        <module>message-confirmation-sub-system</module>
+        <module>message-recovery-sub-system</module>
     </modules>
 
     <parent>

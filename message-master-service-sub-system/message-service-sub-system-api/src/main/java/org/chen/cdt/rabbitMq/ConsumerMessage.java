@@ -1,11 +1,9 @@
-package org.chen.ctd.common.message.rest;
+package org.chen.cdt.rabbitMq;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.chen.ctd.common.message.BaseNetworkMessage;
-
-import java.io.Serializable;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.annotation.RabbitHandler;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * MIT License
@@ -23,28 +21,15 @@ import java.io.Serializable;
  * copies or substantial portions of the Software.
  *
  * @Author chenchen6
- * @Date: 2020/3/25 19:51
+ * @Date: 2020/3/29 18:20
  * @Description:
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class RestMessage extends BaseNetworkMessage implements Serializable {
-    private String messageId;
-
-    private String messageBody;
-
-    private String messageDataType;
-
-    private String routingKey;
-
-    private Integer messageSendTime;
-
-    private String areadlyDead;
-
-    private String firstField;
-
-    private String secondField;
-
-    private String thirdField;
+@Slf4j
+@Configuration
+public class ConsumerMessage {
+    @RabbitListener(queues = "yewu.routing.key1")
+    @RabbitHandler
+    public void handleMessage(String message) {
+        log.info("ConsumerMessage handleMessage recive message is : {}", message);
+    }
 }

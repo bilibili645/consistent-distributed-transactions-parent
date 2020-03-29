@@ -24,7 +24,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Description:
  */
 @MapperScan("org.chen.ctd.mapper")
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"org.chen.**"})
 public class StartMain {
     public static void main(String[] args) {
         SpringApplication.run(StartMain.class, args);

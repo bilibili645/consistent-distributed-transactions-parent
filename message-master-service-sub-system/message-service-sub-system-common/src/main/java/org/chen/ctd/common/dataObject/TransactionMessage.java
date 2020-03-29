@@ -1,9 +1,13 @@
 package org.chen.ctd.common.dataObject;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -28,11 +32,16 @@ import java.time.LocalDateTime;
  * @Date: 2020/3/25 21:47
  * @Description: Message表。作为全局事务控制的基石。
  */
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder(toBuilder = true)
 @Data
 @TableName("transaction_message")
 public class TransactionMessage implements Serializable {
-    @TableId
-    private String pid;
+    @TableId(type = IdType.AUTO)
+    private Integer pid;
+    @TableField("message_id")
+    private String messageId;
 
     @TableField("version")
     private Integer version;
@@ -44,20 +53,16 @@ public class TransactionMessage implements Serializable {
     private LocalDateTime createTime;
     @TableField("update_time")
     private LocalDateTime updateTime;
-    @TableField("message_id")
-    private String messageId;
     @TableField("message_body")
     private String messageBody;
     @TableField("message_data_type")
     private String messageDataType;
-    @TableField("exchange")
-    private String exchange;
     @TableField("routing_key")
     private String routingKey;
     @TableField("message_retry_count")
     private Integer messageRetryCount;
     @TableField("areadly_dead")
-    private String areadlyDead;
+    private Integer areadlyDead;
     @TableField("status")
     private Integer status;
     @TableField("status_desc")
@@ -70,4 +75,6 @@ public class TransactionMessage implements Serializable {
     private String secondField;
     @TableField("third_field")
     private String thirdField;
+    @TableField("disabled")
+    private Integer disabled;
 }

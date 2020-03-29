@@ -1,5 +1,6 @@
 package org.chen.ctd.service.abstractImpl;
 
+import org.chen.ctd.common.enums.BizBaseResponse;
 import org.chen.ctd.service.TransactionsMessageService;
 
 /**
@@ -23,10 +24,12 @@ import org.chen.ctd.service.TransactionsMessageService;
  * 只有业务消费域成功收获P端传递的消费成功信息,才会对消息服务子系统进行删除操作。
  * 并对对应MQ信息做ack答应机制。
  */
-public abstract class TransactionsMessageService2P<T> implements TransactionsMessageService {
+public interface TransactionsMessageService2P<T> extends TransactionsMessageService {
     /**
-     * 标志分布式事务流程的完成.完成MQ及消息服务子系统的ACK机制。
+     * 标志分布式事务流程的完成.
+     * 完成MQ及消息服务子系统的ACK机制。
+     * 确认消息已经成功被消费。
      * @param message
      */
-    public abstract void deleteMessageByAck(T message);
+     BizBaseResponse deleteMessageByAck(T message);
 }

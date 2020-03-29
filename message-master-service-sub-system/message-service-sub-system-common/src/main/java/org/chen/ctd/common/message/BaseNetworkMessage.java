@@ -3,10 +3,9 @@ package org.chen.ctd.common.message;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.chen.ctd.common.utils.StringUtils;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * MIT License
@@ -31,7 +30,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BaseNetworkMessage implements Serializable {
-    private String id = StringUtils.get32UUID();
+    private Integer id ;
 
     private Integer version = 0;
 
@@ -41,11 +40,11 @@ public class BaseNetworkMessage implements Serializable {
 
     private String createUserName;
 
-    private LocalDate createTime;
+    private LocalDateTime createTime;
 
     private String updateUserName;
 
-    private LocalDate updateTime;
+    private LocalDateTime updateTime;
 
     private String remark;
 }

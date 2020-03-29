@@ -1,5 +1,6 @@
 package org.chen.ctd.service.abstractImpl;
 
+import org.chen.ctd.common.enums.BizBaseResponse;
 import org.chen.ctd.service.TransactionsMessageService;
 
 /**
@@ -22,23 +23,26 @@ import org.chen.ctd.service.TransactionsMessageService;
  * @Description: 对state confirm 消息状态确认子系统提供的服务。
  *  即：一致性消息发送过程的冲正和异常处理流程。   state confirm.
  */
-public abstract class TransactionsMessageService2SC<T> implements TransactionsMessageService {
+public interface TransactionsMessageService2SC<T> extends TransactionsMessageService {
     /**
-     * 1. 查询状态为'确认超时'的消息。
+     * 1. 查询状态为'确认超时(WAITING_CONFIRM)'的消息 并与发送业务返进行比对。
+     * (此情况发生于消费方和此系统通讯时出现网络等问题。)
      * @param message
      * @return
      */
-    public abstract T getMessageByStateIsTimeOut(T message);
+    public BizBaseResponse getMessageByStateIsTimeOut(T message);
     /**
-     * 确认和投递消息给下游MQ
+     * 2.1 -> 当1中确认消费房业务操作成功后，直接确认和投递消息给下游MQ
+     * (确认并发送。)
      * @param message
      * @return
      */
-    public abstract T updateConfirmAndSendMessage2MQ(T message);
+    public BizBaseResponse updateConfirmAndSendMessage2MQ(T message);
     /**
+     * 2.2 -> 当1中确认业务方消费失败后,我们保证消息一致性需要删除此条状态消息。
      * 提供删除消息的服务。
      * @param message
      * @return
      */
-    public abstract Integer deleteMessageByMessage(T message);
+    public BizBaseResponse deleteMessageByMessage(T message);
 }

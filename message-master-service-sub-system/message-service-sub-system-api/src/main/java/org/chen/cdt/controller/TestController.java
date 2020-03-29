@@ -1,11 +1,15 @@
 package org.chen.cdt.controller;
 
 import org.chen.cdt.serviceImpl.TransactionsMessageService2CImpl;
+import org.chen.ctd.common.enums.BizBaseResponse;
+import org.chen.ctd.common.message.rest.RestMessage;
 import org.chen.ctd.service.TransactionsMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDateTime;
 
 /**
  * MIT License
@@ -33,8 +37,13 @@ public class TestController {
     private TransactionsMessageService2CImpl transactionsMessageService;
 
     @GetMapping("/testInfo")
-    public String testInfo() {
-        transactionsMessageService.saveAndConfirmWaitingMessage(null);
-        return "hello world!";
+    public BizBaseResponse testInfo() {
+        RestMessage message = new RestMessage();
+        message.setCreateTime(LocalDateTime.now());
+        message.setMessageId("12345676");
+        message.setRoutingKey("yewu.routing.key1");
+        message.setId(2);
+        message.setMessageBody("json for test.");
+        return transactionsMessageService.confirmAndSendMessage2MQ(message);
     }
 }

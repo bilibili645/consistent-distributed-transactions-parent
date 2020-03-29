@@ -1,6 +1,9 @@
 package org.chen.ctd.service.abstractImpl;
 
+import org.chen.ctd.common.enums.BizBaseResponse;
 import org.chen.ctd.service.TransactionsMessageService;
+
+import java.util.List;
 
 /**
  * MIT License
@@ -22,22 +25,30 @@ import org.chen.ctd.service.TransactionsMessageService;
  * @Description: 对消息恢复子系统提供的接口。
  * P端接收消息冲正和异常处理流程。
  */
-public abstract class TransactionsMessageService2Recovery<T> implements TransactionsMessageService {
+public interface TransactionsMessageService2R<T> extends TransactionsMessageService {
     /**
-     * 1. 消息恢复子系统会去查询消息服务子系统已经发送成功，但是没有被确认消费成功的子系统。
+     * 1. 消息恢复子系统会去查询消息服务子系统已经发送成功，
+     * 但是没有被确认消费成功的消息。。
      */
-    public abstract T getSendSuccessfullyNotConsumeMessage(T state);
+    BizBaseResponse getSendSuccessfullyNotConsumeMessage(T message);
+
+    BizBaseResponse<List> getSendSuccessfullyNotConsumeMessages();
     /**
      * 2.1 被消息恢复子系统重新发送消息。
      */
-    public abstract void reSendMessage(T message);
+    void reSendMessage(T message);
     /**
-     * 2.2 直接发送消息。
+     * 2.1 被消息恢复子系统重新发送消息。
      */
-    public abstract void directSendMessage(T message);
+    void reSendMessageByList(List<T> message);
+    /**
+     * 2.2 直接发送消息(简单但不重要的业务.(比如商户通知之类的东西.))。
+     *      check 后直接发送给MQ中间件即可。
+     */
+    void directSendMessage(T message);
 
     /**
      * 3. 经过消息恢复子系统重试多次的消息仍未被消费则被标记为死亡对象。
      */
-    public abstract Integer markObjectDied(T message);
+    BizBaseResponse markObjectDied(T message);
 }

@@ -1,5 +1,6 @@
 package org.chen.ctd.service.abstractImpl;
 
+import org.chen.ctd.common.enums.BizBaseResponse;
 import org.chen.ctd.service.TransactionsMessageService;
 
 import java.util.Objects;
@@ -24,14 +25,15 @@ import java.util.Objects;
  * @Description: 消息服务确认子系统对C(Consumer)端的响应。
  * 一致性消息发送方的正向流程。
  */
-public abstract class TransactionsMessageService2C<T> implements TransactionsMessageService {
+public interface TransactionsMessageService2C<T> extends TransactionsMessageService {
 
     /**
-     * 接收Consumer端的预发送消息，回存，并保存在消息服务子系统内置DB内。
+     * 保存和确认预发送消息。
+     * 保证目标服务和此系统的网络畅通。
      * @param message
      * @return
      */
-    public abstract Integer saveAndConfirmWaitingMessage(T message);
+    BizBaseResponse saveAndConfirmWaitingMessage(T message);
 
     /**
      * 主动方(C)
@@ -39,7 +41,7 @@ public abstract class TransactionsMessageService2C<T> implements TransactionsMes
      * 2.2 然后调用此接口,通过此接口查询1中存储在DB内的消息并设置其状态后进行投放下游MQ。
      * @param message
      */
-    public abstract void confirmAndSendMessage2MQ(T message);
+    BizBaseResponse confirmAndSendMessage2MQ(T message);
 
 
     /**
@@ -47,5 +49,5 @@ public abstract class TransactionsMessageService2C<T> implements TransactionsMes
      * @param message
      * @return
      */
-    public abstract Integer saveAndSendMessage2MQ(T message);
+    BizBaseResponse saveAndSendMessage2MQ(T message);
 }

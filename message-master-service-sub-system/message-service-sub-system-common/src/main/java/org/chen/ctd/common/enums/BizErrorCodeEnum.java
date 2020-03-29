@@ -47,6 +47,7 @@ public enum BizErrorCodeEnum implements BizEnum {
     VERSION_ERROR(10027, "VERSION_ERROR", "版本号错误"),
     SUCCESS_NOT_EXIST(10028, "SUCCESS_NOT_EXIST", "数据不存在"),
     REPEAT_OPERATION(10029, "REPEAT_OPERATION", "重复操作"),
+    FIELD_VALUE_NOT_EXSIT(10030, "FIELD_VALUE_NOT_EXSIT", "指定字段未携带."),
 
     NO_NEED_EXECUTE(11000, "NO_NEED_EXECUTE", "不需要执行");
 

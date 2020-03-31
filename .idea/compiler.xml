@@ -6,7 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="message-confirmation-sub-system" />
+        <module name="message-confirmation-system-api" />
+        <module name="message-confirmation-system-common" />
         <module name="message-recovery-sub-system" />
         <module name="message-service-sub-system-api" />
         <module name="message-service-sub-system-common" />
@@ -14,10 +15,12 @@
         <module name="message-service-sub-system-rpc" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="consistent-distributed-transactions-api" target="1.5" />
+    <bytecodeTargetLevel target="8">
       <module name="consistent-distributed-transactions-parent" target="1.8" />
       <module name="message-confirmation-sub-system" target="1.8" />
+      <module name="message-confirmation-sub-system-api" target="8" />
+      <module name="message-confirmation-system-api" target="1.8" />
+      <module name="message-confirmation-system-common" target="1.8" />
       <module name="message-master-service-sub-system" target="1.8" />
       <module name="message-recovery-sub-system" target="1.8" />
       <module name="message-service-sub-system-api" target="1.8" />

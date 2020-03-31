@@ -48,6 +48,7 @@ public class TransactionsMessageService2SCImpl implements TransactionsMessageSer
     @Autowired
     private TransactionsMessageService2CImpl tmService2C;
 
+    //提供查询消息是否超时的消息
     @Override
     public BizBaseResponse getMessageByStateIsTimeOut(RestMessage message) {
         log.info("TransactionsMessageService2CImpl getMessageByStateIsTimeOut param value is :{}", JSONObject.toJSONString(message));

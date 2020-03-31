@@ -30,19 +30,19 @@ public interface TransactionsMessageService2SC<T> extends TransactionsMessageSer
      * @param message
      * @return
      */
-    public BizBaseResponse getMessageByStateIsTimeOut(T message);
+    BizBaseResponse getMessageByStateIsTimeOut(T message);
     /**
      * 2.1 -> 当1中确认消费房业务操作成功后，直接确认和投递消息给下游MQ
      * (确认并发送。)
      * @param message
      * @return
      */
-    public BizBaseResponse updateConfirmAndSendMessage2MQ(T message);
+    BizBaseResponse updateConfirmAndSendMessage2MQ(T message);
     /**
      * 2.2 -> 当1中确认业务方消费失败后,我们保证消息一致性需要删除此条状态消息。
      * 提供删除消息的服务。
      * @param message
      * @return
      */
-    public BizBaseResponse deleteMessageByMessage(T message);
+    BizBaseResponse deleteMessageByMessage(T message);
 }

@@ -99,6 +99,7 @@ public class TransactionsMessageService2CImpl implements TransactionsMessageServ
         //消息业务消费端会去调用此服务的接口去修改这条消息的状态值.
         //异常情况是 消息恢复子系统重新投放消息。所以被动方需要接口幂等。
         //当被动方重试一定次数后就需要消息管理子系统介入.进行调度。
+        //将其标记为死亡... 定时去进行操作。
         WaitingConfirmResponse resp = new WaitingConfirmResponse();
         resp.setPkid(tm.getPid());
         resp.setMessageId(tm.getMessageId());

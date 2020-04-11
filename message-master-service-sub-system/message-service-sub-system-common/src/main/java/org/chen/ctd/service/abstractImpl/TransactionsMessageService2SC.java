@@ -27,10 +27,10 @@ public interface TransactionsMessageService2SC<T> extends TransactionsMessageSer
     /**
      * 1. 查询状态为'确认超时(WAITING_CONFIRM)'的消息 并与发送业务返进行比对。
      * (此情况发生于消费方和此系统通讯时出现网络等问题。)
-     * @param message
+     *
      * @return
      */
-    BizBaseResponse getMessageByStateIsTimeOut(T message);
+    BizBaseResponse getMessageByStateIsTimeOut();
     /**
      * 2.1 -> 当1中确认消费房业务操作成功后，直接确认和投递消息给下游MQ
      * (确认并发送。)

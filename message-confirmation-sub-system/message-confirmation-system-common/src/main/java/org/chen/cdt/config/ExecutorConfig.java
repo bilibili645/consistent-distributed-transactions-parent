@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 import java.util.concurrent.Executor;
@@ -46,13 +47,12 @@ public class ExecutorConfig {
      * @return
      */
     @Bean({executorName})
-    //@Primary
+    @Primary
     public Executor taskExecutor() {
         return buildIOThreadPool();
     }
 
     private Executor buildIOThreadPool() {
-        System.out.println(config);
         final CustomizableTaskQueue taskQueue = new CustomizableTaskQueue(config.getQueueSize());
         //如果想定制名称. OK。请在startInitialize之前设置前缀即可。
         CustomizableThreadPoolExecutor.SET_THREAD_PREFIX_NAME("chen");
@@ -61,6 +61,7 @@ public class ExecutorConfig {
                 config.getMaxPoolSize(), config.getKeepAliveTime(),
                 config.getTimeUnit(), taskQueue,
                 null, new ThreadPoolExecutor.CallerRunsPolicy(), null);
+        taskQueue.setParentExecutor(executor);
         return executor;
     }
 }

@@ -89,7 +89,7 @@ public class CustomizableTaskQueue extends LinkedBlockingQueue<Runnable> {
     public boolean offer(Runnable runnableTask) {
         //代表此队列无父线程池
         if(Objects.isNull(parentExecutor)) {
-            super.offer(runnableTask);
+            throw new RuntimeException("current task queue haven't parent executor!");
         }
         //池内可容纳线程数已到达最大限度。
         if(parentExecutor.getPoolSize() == parentExecutor.getMaximumPoolSize()) {

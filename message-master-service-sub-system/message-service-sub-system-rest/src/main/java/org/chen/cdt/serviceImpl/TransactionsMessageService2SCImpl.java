@@ -50,15 +50,12 @@ public class TransactionsMessageService2SCImpl implements TransactionsMessageSer
 
     //提供查询消息是否超时的消息
     @Override
-    public BizBaseResponse getMessageByStateIsTimeOut(RestMessage message) {
-        log.info("TransactionsMessageService2CImpl getMessageByStateIsTimeOut param value is :{}", JSONObject.toJSONString(message));
-        MessageCheckUtils.checkMessage(message);
-        MessageCheckUtils.checkMessageFileds(message.getMessageId());
+    public BizBaseResponse getMessageByStateIsTimeOut() {
         //依据status 和 全局id。此时可能会查出其他业务方的消息. 所以我们
         QueryWrapper<TransactionMessage> wrapper = new QueryWrapper<>();
-        wrapper.eq("message_id", message.getMessageId())
-                .eq("status", MessageStatusEnum.WAITING_CONFIRM.getValue())
-                .eq("disabled", 0);
+        wrapper.eq("status", MessageStatusEnum.WAITING_CONFIRM.getValue())
+                .eq("disabled", 0)
+                .orderByDesc("create_time");
         List<TransactionMessage> tms = mapper.selectList(wrapper);
         log.info("TransactionsMessageService2CImpl getMessageByStateIsTimeOut end return  value is :{}", JSONObject.toJSONString(tms));
         //这里最重要的是返回业务返前置的业务字段。
